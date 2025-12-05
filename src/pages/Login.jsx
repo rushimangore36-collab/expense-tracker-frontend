@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 export default function Login({ setLogged }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const API = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   async function handleLogin() {
-    const res = await fetch("http://localhost:5000/auth/login", {
+    const res = await fetch(`${API}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
