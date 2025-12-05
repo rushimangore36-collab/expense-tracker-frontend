@@ -8,7 +8,7 @@ const Home = () => {
   const [addingBalance, setAddingBalance] = useState(false);
   const [newAmount, setNewAmount] = useState("");
   const [withdrawArray, setWithdrawArray] = useState([]);
-  const API = "http://localhost:5000";
+  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -35,10 +35,6 @@ const Home = () => {
         "Content-Type": "application/json",
         Authorization: token ? "Bearer " + token : "",
       },
-    }).catch((err) => {
-      if (err.response && err.response.status === 401) {
-        window.location.href = `${API}/`; // redirect to landing/login
-      }
     });
 
     const data = await res.json();
@@ -53,10 +49,6 @@ const Home = () => {
         Authorization: token ? "Bearer " + token : "",
       },
       body: JSON.stringify({ balance: balanceValue }),
-    }).catch((err) => {
-      if (err.response && err.response.status === 401) {
-        window.location.href = `${API}/`; // redirect to landing/login
-      }
     });
     return res.json();
   }
@@ -68,10 +60,6 @@ const Home = () => {
         "Content-Type": "application/json",
         Authorization: token ? "Bearer " + token : "",
       },
-    }).catch((err) => {
-      if (err.response && err.response.status === 401) {
-        window.location.href = `${API}/`; // redirect to landing/login
-      }
     });
 
     const data = await res.json();
@@ -86,10 +74,6 @@ const Home = () => {
         Authorization: token ? "Bearer " + token : "",
       },
       body: JSON.stringify({ amount, note }),
-    }).catch((err) => {
-      if (err.response && err.response.status === 401) {
-        window.location.href = `${API}/`; // redirect to landing/login
-      }
     });
     const amt = Number(amount);
     const updatedBalance = balance - amt;
@@ -109,10 +93,6 @@ const Home = () => {
         "Content-Type": "application/json",
         Authorization: token ? "Bearer " + token : "",
       },
-    }).catch((err) => {
-      if (err.response && err.response.status === 401) {
-        window.location.href = `${API}/`; // redirect to landing/login
-      }
     });
 
     fetchData();
