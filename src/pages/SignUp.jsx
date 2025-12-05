@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const API = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   async function handleSignup() {
-    await fetch("http://localhost:5000/auth/signup", {
+    await fetch(`${API}/auth/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
