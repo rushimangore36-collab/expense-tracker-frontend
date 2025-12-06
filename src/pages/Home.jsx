@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { redirect } from "react-router-dom";
 
 const Home = () => {
   const [withdrawAmount, setWithdrawAmount] = useState("");
@@ -42,7 +41,7 @@ const Home = () => {
   }
 
   async function postBalance(balanceValue) {
-    const res = await fetch(`${API}/home/api/updatebalance`, {
+    await fetch(`${API}/home/api/updatebalance`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +49,6 @@ const Home = () => {
       },
       body: JSON.stringify({ balance: balanceValue }),
     });
-    return res.json();
   }
 
   async function fetchData() {
@@ -75,10 +73,10 @@ const Home = () => {
       },
       body: JSON.stringify({ amount, note }),
     });
-    const amt = Number(amount);
-    const updatedBalance = balance - amt;
-    setBalance(updatedBalance);
-    await postBalance(updatedBalance);
+
+    const updated = balance - Number(amount);
+    setBalance(updated);
+    await postBalance(updated);
 
     setWithdrawAmount("");
     setNote("");
@@ -99,17 +97,14 @@ const Home = () => {
   }
 
   return (
-    <div className="bg-slate-200">
-      <div className="max-w-3xl mx-auto p-6 space-y-8">
+    <div className="bg-slate-200 pt-24 pb-10">
+      <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-8">
+
         {/* BALANCE CARD */}
         <div className="flex items-center justify-between bg-white shadow-lg rounded-2xl px-6 py-5 border border-gray-100">
           <div>
-            <p className="text-gray-500 text-sm tracking-wide">
-              Available Balance
-            </p>
-            <h1 className="text-3xl font-bold text-green-600 mt-1">
-              ₹{balance}
-            </h1>
+            <p className="text-gray-500 text-sm">Available Balance</p>
+            <h1 className="text-3xl font-bold text-green-600 mt-1">₹{balance}</h1>
           </div>
 
           <button
@@ -122,17 +117,18 @@ const Home = () => {
 
         {/* ADD BALANCE INPUT */}
         {addingBalance && (
-          <div className="flex items-center gap-4 bg-white p-4 shadow rounded-xl border border-gray-100">
+          <div className="bg-white p-4 shadow rounded-xl border border-gray-100 space-y-3">
             <input
               type="number"
               value={newAmount}
               onChange={(e) => setNewAmount(e.target.value)}
               placeholder="Enter amount"
-              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-400 outline-none w-40"
+              className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-green-400 outline-none"
             />
+
             <button
               onClick={newAddBalance}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition"
+              className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition"
             >
               Add
             </button>
@@ -141,25 +137,23 @@ const Home = () => {
 
         {/* WITHDRAW INPUT SECTION */}
         <div className="bg-white p-6 rounded-2xl shadow border border-gray-100 space-y-4">
-          <h2 className="text-lg font-semibold text-gray-700">
-            Withdraw Money
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-700">Withdraw Money</h2>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="number"
               value={withdrawAmount}
               onChange={(e) => setWithdrawAmount(e.target.value)}
               placeholder="Enter amount"
-              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-400 outline-none w-40"
+              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-400 outline-none sm:w-40 w-full"
             />
 
             <input
               type="text"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-400 outline-none flex-1"
               placeholder="Note"
+              className="border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-400 outline-none flex-1"
             />
           </div>
 
@@ -172,13 +166,13 @@ const Home = () => {
         </div>
 
         {/* WITHDRAW LIST */}
-        <h2 className="text-lg font-bold text-gray-800 mt-4">Your Withdraws</h2>
+        <h2 className="text-lg font-bold text-gray-800">Your Withdraws</h2>
 
         <div className="space-y-3">
           {withdrawArray.map((withdraw) => (
             <div
               key={withdraw._id}
-              className="flex items-center justify-between bg-white shadow-md rounded-xl px-5 py-3 border border-gray-100"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white shadow-md rounded-xl px-5 py-3 border border-gray-100 gap-2"
             >
               <div>
                 <p className="text-lg font-semibold text-gray-800">
@@ -189,7 +183,7 @@ const Home = () => {
 
               <button
                 onClick={() => deleteWithdraw(withdraw._id)}
-                className="bg-red-600 text-white px-3 py-1 rounded-md text-sm hover:bg-red-500 transition"
+                className="bg-red-600 text-white px-3 py-1 rounded-md text-sm hover:bg-red-500 transition self-start sm:self-auto"
               >
                 Remove
               </button>
