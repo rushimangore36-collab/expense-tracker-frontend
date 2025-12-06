@@ -19,14 +19,14 @@ export default function Login({ setLogged }) {
 
     if (data.token) {
       localStorage.setItem("token", data.token);
-      navigate("/home");
       setLogged(true);
+      navigate("/home");
     }
   }
 
   return (
-    <div className="h-80 flex justify-center mt-20 ">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-80">
+    <div className="min-h-screen flex justify-center items-center px-4">
+      <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Login
         </h2>
@@ -49,7 +49,7 @@ export default function Login({ setLogged }) {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-linear-to-r from-blue-800 to-blue-500 text-white py-2 rounded-md"
+          className="w-full bg-blue-600 text-white py-2 rounded-md"
         >
           Login
         </button>
