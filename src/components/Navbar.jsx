@@ -11,6 +11,7 @@ const Navbar = ({ logged, setLogged }) => {
   function loggedOut() {
     setLogged(false);
     localStorage.removeItem("token");
+    setOpen(false);
   }
 
   return (
