@@ -71,7 +71,7 @@ const Navbar = ({ logged, setLogged }) => {
 
       {/* MOBILE DRAWER — slides UNDER navbar */}
       <div
-        className={`fixed top-0 right-0 h-100 rounded-lg w-64 bg-gray-800 text-white p-6 shadow-xl transform transition-transform duration-300 z-40 ${
+        className={`fixed top-0 right-0 h-120 rounded-lg w-64 bg-gray-800 text-white p-6 shadow-xl transform transition-transform duration-300 z-40 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
