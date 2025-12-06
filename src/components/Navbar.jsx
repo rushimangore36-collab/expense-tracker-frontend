@@ -16,19 +16,19 @@ const Navbar = ({ logged, setLogged }) => {
   return (
     <>
       {/* NAVBAR */}
-      <nav className="w-full fixed top-0 left-0 bg-gradient-to-r from-gray-800 to-blue-700 text-white px-4 py-3 flex items-center justify-between shadow-lg z-50">
+      <nav className="w-full fixed top-0 left-0 bg-gray-900 text-white px-4 py-3 flex items-center justify-between shadow-lg z-50">
 
         {/* Logo */}
-        <div className="text-xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200">
+        <div className="text-xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
           Expense Tracker
         </div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center space-x-8 text-sm font-semibold">
-          <li><Link to="/home" className="hover:text-blue-200">HOME</Link></li>
-          <li><Link to="/about" className="hover:text-blue-200">ABOUT</Link></li>
-          <li><Link to="/contactus" className="hover:text-blue-200">CONTACT US</Link></li>
-          <li><Link to="/developer" className="hover:text-blue-200">DEVELOPER</Link></li>
+          <li><Link to="/home" className="hover:text-blue-300">HOME</Link></li>
+          <li><Link to="/about" className="hover:text-blue-300">ABOUT</Link></li>
+          <li><Link to="/contactus" className="hover:text-blue-300">CONTACT US</Link></li>
+          <li><Link to="/developer" className="hover:text-blue-300">DEVELOPER</Link></li>
         </ul>
 
         {/* Desktop Auth */}
@@ -37,9 +37,9 @@ const Navbar = ({ logged, setLogged }) => {
             <Link
               onClick={loggedOut}
               to="/auth/login"
-              className="px-3 py-1.5 rounded-lg bg-red-500 hover:bg-red-600 text-white text-sm font-semibold"
+              className="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-semibold"
             >
-              LogOut
+              Logout
             </Link>
           ) : (
             <Link
@@ -52,7 +52,7 @@ const Navbar = ({ logged, setLogged }) => {
 
           <Link
             to="/auth/signup"
-            className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-green-500 to-green-300 text-white text-sm font-semibold"
+            className="px-3 py-1.5 rounded-lg bg-green-600 hover:bg-green-500 text-white text-sm font-semibold"
           >
             Sign Up
           </Link>
@@ -69,13 +69,13 @@ const Navbar = ({ logged, setLogged }) => {
         </button>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* MOBILE DRAWER — slides UNDER navbar */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-r from-blue-800 to-blue-500 text-white p-6 shadow-xl transform transition-transform duration-300 z-40 ${
+        className={`fixed top-16 right-0 h-full w-64 bg-gray-800 text-white p-6 shadow-xl transform transition-transform duration-300 z-40 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close */}
+        {/* Close Button */}
         <button
           className="text-3xl absolute top-3 right-4"
           onClick={() => setOpen(false)}
@@ -85,6 +85,7 @@ const Navbar = ({ logged, setLogged }) => {
 
         <h3 className="text-2xl font-bold mb-8 mt-6">Menu</h3>
 
+        {/* Menu Links */}
         <ul className="space-y-5 text-lg font-medium">
           <li><Link to="/home" onClick={() => setOpen(false)}>HOME</Link></li>
           <li><Link to="/about" onClick={() => setOpen(false)}>ABOUT</Link></li>
@@ -92,7 +93,7 @@ const Navbar = ({ logged, setLogged }) => {
           <li><Link to="/developer" onClick={() => setOpen(false)}>DEVELOPER</Link></li>
         </ul>
 
-        {/* Mobile Auth */}
+        {/* Auth Buttons */}
         <div className="mt-10 flex flex-col gap-3">
           {logged ? (
             <Link
@@ -100,7 +101,7 @@ const Navbar = ({ logged, setLogged }) => {
               to="/auth/login"
               className="px-4 py-2 rounded-lg bg-red-600 text-center"
             >
-              LogOut
+              Logout
             </Link>
           ) : (
             <Link
