@@ -16,7 +16,7 @@ const Navbar = ({ logged, setLogged }) => {
   return (
     <>
       {/* NAVBAR */}
-      <nav className="w-full fixed top-0 left-0 bg-gray-900 text-white px-4 py-3 flex items-center justify-between shadow-lg z-50">
+      <nav className="w-full fixed top-0 left-0 bg-gray-900 text-white px-4 py-3 flex items-center justify-between shadow-lg">
 
         {/* Logo */}
         <div className="text-xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
@@ -71,7 +71,7 @@ const Navbar = ({ logged, setLogged }) => {
 
       {/* MOBILE DRAWER — slides UNDER navbar */}
       <div
-        className={`fixed top-8 right-0 h-full w-64 bg-gray-800 text-white p-6 shadow-xl transform transition-transform duration-300 z-40 ${
+        className={`fixed top-0 right-0 h-80 w-64 bg-gray-800 text-white p-6 shadow-xl transform transition-transform duration-300 z-40 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
