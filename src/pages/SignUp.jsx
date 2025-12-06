@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -19,8 +19,8 @@ export default function Signup() {
   }
 
   return (
-    <div className="h-80 flex justify-center mt-20">
-      <div className="bg-white p-8 rounded-xl shadow-lg w-80">
+    <div className="min-h-screen flex justify-center items-center px-4">
+      <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Create Account
         </h2>
