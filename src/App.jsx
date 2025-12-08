@@ -24,7 +24,7 @@ const App = () => {
       <Navbar logged={logged} setLogged={setLogged} />
       <div className="grow pt-20">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Signup />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/developer" element={<Developer />} />
